@@ -549,3 +549,45 @@
   padding-left: 5px;
 }
 
+.u-container-layout-4 {
+  display: flex; /* Habilita Flexbox */
+  flex-direction: column; /* Organiza as children em colunas */
+}
+
+.parte-superior {
+  width: 100%; /* Ocupa toda a largura */
+  text-align: center;
+  /* Estilize conforme necessário */
+}
+
+.parte-inferior-esquerda{
+  text-align: center;
+}
+
+.parte-inferior-direita{
+  text-align: center;
+}
+
+.parte-inferior-esquerda, .parte-inferior-direita {
+  width: 50%; /* Cada uma ocupa metade da largura */
+  /* Estilize conforme necessário */
+}
+
+/* Para as duas partes inferiores ficarem lado a lado */
+@media (min-width: 600px) { /* Ajuste o valor do min-width conforme necessário */
+  .u-container-layout-4 {
+    flex-direction: row; /* Muda o layout para linha na tela grande */
+    flex-wrap: wrap; /* Permite que os itens sejam envolvidos como necessário */
+  }
+  
+  .parte-inferior-esquerda, .parte-inferior-direita {
+    width: 50%; /* Cada parte inferior ocupa metade da largura */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+  }
+
+  .parte-superior {
+    width: 100%; /* Ocupa toda a largura na tela grande */
+    order: -1; /* Coloca a parte superior acima das outras */
+  }
+}
+
