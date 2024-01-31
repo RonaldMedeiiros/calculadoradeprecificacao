@@ -48,16 +48,14 @@
               class="u-active-palette-1-base u-button-style u-grey-5 u-radius-10 u-tab-link u-tab-link-5"
               id="link-tab-cenario" href="#tab-cenario" role="tab" aria-controls="tab-cenario"
               aria-selected="true">Cenários</a>
-          </li>          
+          </li>
           <li class="u-tab-item" role="presentation"><a
-            class="u-active-palette-1-base u-button-style u-grey-5 u-radius-10 u-tab-link u-tab-link-1"
-            id="link-tab-inst" href="#tab-inst" role="tab" aria-controls="tab-inst"
-            aria-selected="true">Créditos</a>
-        </li>
+              class="u-active-palette-1-base u-button-style u-grey-5 u-radius-10 u-tab-link u-tab-link-1"
+              id="link-tab-inst" href="#tab-inst" role="tab" aria-controls="tab-inst" aria-selected="true">Créditos</a>
+          </li>
         </ul>
         <div class="u-tab-content">
-          <div class="u-container-style u-tab-pane" id="tab-inst" role="tabpanel"
-            aria-labelledby="link-tab-inst">
+          <div class="u-container-style u-tab-pane" id="tab-inst" role="tabpanel" aria-labelledby="link-tab-inst">
             <div class="u-container-layout u-container-layout-1">
               <p class="u-align-left-lg u-align-left-md u-align-left-sm u-align-left-xl u-text u-text-default u-text-3">
                 Desenvolvido por:<br>
@@ -82,8 +80,8 @@
               </p>
             </div>
           </div>
-          <div class="u-container-align-left-xs  u-tab-active u-container-style u-tab-pane" id="tab-dados" role="tabpanel"
-            aria-labelledby="link-tab-dados">
+          <div class="u-container-align-left-xs  u-tab-active u-container-style u-tab-pane" id="tab-dados"
+            role="tabpanel" aria-labelledby="link-tab-dados">
             <div class="u-container-layout u-container-layout-2 tooltip-container">
               <h4>DADOS PARA FORMAÇÃO DO PREÇO</h4>
               <p>
@@ -154,7 +152,8 @@
                   <strong>ML:</strong> <span id="cenarioPorcentagemLucro"></span>%
                 </p>
                 <p><strong>Preço de Venda: </strong><span id="precoVenda"></span></p>
-                <p><strong>Ponto de Equilibrio: </strong> R$ <span id="pontoEquilibrio"></span> Unidade: <span id="unidade"></span></p>
+                <p><strong>Ponto de Equilibrio: </strong> R$ <span id="pontoEquilibrio"></span> Unidade: <span
+                    id="unidade"></span></p>
               </div>
               <!-- Parte inferior esquerda -->
               <div class="parte-inferior-esquerda">
@@ -168,7 +167,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -190,102 +189,8 @@
     <a class="u-link" href="" target="_blank">
       <span>Website Builder Software</span>
     </a>.
-  </section>
-  <script>
-    function toggleTooltip() {
-      var tooltip = document.getElementById("tooltipMessage");
-      if (tooltip.style.display === "none") {
-        tooltip.style.display = "block";
-        tooltip.style.opacity = 1;
-      } else {
-        tooltip.style.opacity = 0;
-        setTimeout(function () { tooltip.style.display = "none"; }, 300); // Espera a transição terminar
-      }
-    }
-    function toggleTooltip2() {
-      var tooltip2 = document.getElementById("tooltipMessage2");
-      if (tooltip2.style.display === "none") {
-        tooltip2.style.display = "block";
-        tooltip2.style.opacity = 1;
-      } else {
-        tooltip2.style.opacity = 0;
-        setTimeout(function () { tooltip2.style.display = "none"; }, 300); // Espera a transição terminar
-      }
-    }
-    function toggleTooltip3() {
-      var tooltip3 = document.getElementById("tooltipMessage3");
-      if (tooltip3.style.display === "none") {
-        tooltip3.style.display = "block";
-        tooltip3.style.opacity = 1;
-      } else {
-        tooltip3.style.opacity = 0;
-        setTimeout(function () { tooltip3.style.display = "none"; }, 300); // Espera a transição terminar
-      }
-    }
-  </script>
-  <script>
-    // Variáveis globais
-    var custoDeAquisicao = 0;
-    var percentualCusto = 0;
-    var despesaFixa = 0;
-    var receitaMensal = 0;
-    var porcentagemLucro = 0;
-  
-    // Eventos input
-    document.getElementById('custoAquisicaoInput').addEventListener('input', function () {
-      custoDeAquisicao = parseFloat(this.value) || 0;
-      document.getElementById('cenarioCustoAquisicao').textContent = custoDeAquisicao.toFixed(2);
-      calcularPrecoVenda();
-    });
-  
-    document.getElementById('percentualCustoInput').addEventListener('input', function () {
-      percentualCusto = parseFloat(this.value) || 0;
-      document.getElementById('cenarioPercentualCusto').textContent = percentualCusto.toFixed(2);
-      calcularPrecoVenda();
-    });
-  
-    document.getElementById('despesaFixaInput').addEventListener('input', function () {
-      despesaFixa = parseFloat(this.value) || 0;
-      document.getElementById('cenarioDespesaFixa').textContent = despesaFixa.toFixed(2);
-      calcularPrecoVenda();
-    });
-  
-    document.getElementById('receitaMensalInput').addEventListener('input', function () {
-      receitaMensal = parseFloat(this.value) || 0;
-      document.getElementById('cenarioReceitaMensal').textContent = receitaMensal.toFixed(2);
-      calcularPrecoVenda();
-    });
-  
-    document.getElementById('porcentagemLucroInput').addEventListener('input', function () {
-      porcentagemLucro = parseFloat(this.value) || 0;
-      document.getElementById('cenarioPorcentagemLucro').textContent = porcentagemLucro.toFixed(2);
-      calcularPrecoVenda();
-    });    
-  
-    // Função para calcular e exibir o preço de venda
-    function calcularPrecoVenda() {
-      // Verifique se os valores estão definidos
-      if (!custoDeAquisicao || !percentualCusto || !despesaFixa || !receitaMensal || !porcentagemLucro) {
-        // Não calcule se algum valor estiver faltando
-        return;
-      }
-  
-      // Converta as percentagens para a forma decimal
-      var CV = percentualCusto / 100;
-      var ML = porcentagemLucro / 100;
-      var DF = (despesaFixa / receitaMensal);
-  
-      // Evite divisão por zero ou percentagem inválida
-      if (receitaMensal === 0 || 1 - (CV + DF + ML) <= 0) {
-        document.getElementById('precoVenda').textContent = "Valor fora do cálculo ou negativo";
-        return;
-      }
-  
-      // Cálculo do preço de venda
-      var precoVenda = (custoDeAquisicao / (1 - (CV + DF + ML)));
-      document.getElementById('precoVenda').textContent = `R$ ${precoVenda.toFixed(2)}`;
-    }
-  </script>
+  </section>  
+  <script src="formulas.js"></script>
 </body>
 
 </html>

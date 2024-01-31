@@ -591,3 +591,17 @@
   }
 }
 
+body .u-tabs .u-tab-item a {
+  background-color: #ff96d5 !important;
+  color: white !important;
+}
+
+body .u-tabs .u-tab-item a.active {
+  background-color: #C9318B !important;
+}
+
+.u-active-palette-1-base.u-button-style.u-grey-5.u-radius-10.u-tab-link.u-tab-link-2.active,
+.u-active-palette-1-base.u-button-style.u-grey-5.u-radius-10.u-tab-link.active {
+  background-color: #C9318B !important;
+}
+
