@@ -30,14 +30,15 @@
   <header class="u-clearfix u-header u-header" id="sec-e62b">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <a href="https://transformaempresas.com.br" class="u-image u-logo u-image-1">
-        <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
+        <img src="images/default-logo.png" class="u-logo-image u-logo-image-1" alt="Transforma Empresas Logo"
+          style="width: 50px; height: 50px;">
+        <span class="u-logo-text">Transforma Empresas</span>
       </a>
     </div>
   </header>
   <section class="u-clearfix u-section-1" id="carousel_41f6">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <h5 class="u-text u-text-default u-text-1">Transforma Empresas</h5>
-      <h2 class="u-text u-text-default u-text-2"> Sua calculadora de Precificação!</h2>
+      <h3 class="u-text u-text-default u-text-2"> Sua calculadora de Precificação!</h3>
       <div class="u-expanded-width u-tab-links-align-justify u-tabs u-tabs-1">
         <ul class="u-spacing-30 u-tab-list u-unstyled" role="tablist">
           <li class="u-tab-item" role="presentation"><a
@@ -83,60 +84,61 @@
           <div class="u-container-align-left-xs  u-tab-active u-container-style u-tab-pane" id="tab-dados"
             role="tabpanel" aria-labelledby="link-tab-dados">
             <div class="u-container-layout u-container-layout-2 tooltip-container">
-              <h4>DADOS PARA FORMAÇÃO DO PREÇO</h4>
-              <p>
-                <span style="font-weight: 700;">Quais são os custos de aquisição do seu produto, mercadoria ou
-                  serviço?</span>
-                <br>
-                <span id="custoAquisicaoDisplay"><strong>CA:</strong> R$ </span>
-                <input type="number" id="custoAquisicaoInput" placeholder="Digite o custo" />
+              <h4 style="font-weight: 700;">INSIRA OS DADOS PARA FORMAÇÃO DO PREÇO ABAIXO:</h4>
+              <div class="input-container">
+                <span class="label">CUSTOS DE AQUISIÇÃO DO PRODUTO OU SERVIÇO</span>
+                <div class="tooltip-message" id="tooltipMessage" style="display:none;">
+                  Calcule o custo para produzir seu produto ou fornecer seu serviço. Inclua tudo o que é necessário para que ele possa ser oferecido, como matéria-prima e insumos. Por exemplo, no caso de bolos, conte os custos de farinha, ovos e chocolate. Este é o seu custo de aquisição (CA).
+                </div>
+                <span class="value-display" id="custoAquisicaoDisplay">R$ </span>
+                <input type="number" id="custoAquisicaoInput" placeholder="CA" />
                 <i class="icon-info" onclick="toggleTooltip()"><img src="icon/info.svg" alt="Saiba mais" width="24"
-                    height="24" style="fill:none;" /></i>
-              <div class="tooltip-message" id="tooltipMessage" style="display:none;">
-                Custo de aquisição é o gasto necessário para fabricar os produtos, vender as mercadorias ou prestar os
-                serviços, exemplo: se você fabrica bolos, você vai precisar de farinha de trigo, ovos, chocolate,
-                embalagem, etiqueta. O conjunto desses custos serão os de aquisição.
+                  height="24" style="fill:none;" /></i>
+                    <br>
+                
               </div>
-              </p>
-              <p>
-                <span style="font-weight: 700;">Coloque aqui o percentual dos custos variáveis do seu produto,
-                  mercadoria ou serviço.</span>
-                <br>
-                <span id="percentualCustoDisplay"><strong>CV:</strong> % </span>
-                <input type="number" id="percentualCustoInput" placeholder="Digite o percentual" />
+              <div class="input-container">
+                <span class="label">CUSTOS VARIÁVEIS DO SEU PRODUTO OU SERVIÇO</span>
+                <div class="tooltip-message2" id="tooltipMessage2" style="display:none;">
+                  Registre a porcentagem dos custos que variam conforme você realiza vendas. Isso inclui despesas como taxas de cartão e comissões. Esses são seus custos variáveis (CV).
+                </div>
+                <span class="value-display" id="percentualCustoDisplay">% </span>
+                <input type="number" id="percentualCustoInput" placeholder="CV" />
                 <i class="icon-info2" onclick="toggleTooltip2()"><img src="icon/info.svg" alt="Saiba mais" width="24"
                     height="24" style="fill:none;" /></i>
-              <div class="tooltip-message2" id="tooltipMessage2" style="display:none;">
-                Os custos variáveis são aqueles que precisam ser agregados aos produtos, mercadorias ou serviços e
-                variam em função das vendas, ou seja, só existirão se houver a venda. São exemplos: taxa de cartão,
-                impostos, comissões, etc.
+                
               </div>
-              </p>
-              <p>
-                <span style="font-weight: 700;">Quais são as despesas fixas mensais do seu negócio?</span>
-                <br>
-                <span id="despesaFixaDisplay"><strong>DF:</strong> R$ </span>
-                <input type="number" id="despesaFixaInput" placeholder="Digite o valor" />
+              <div class="input-container">
+                <span class="label">DESPESAS FIXAS MENSAIS DO SEU NEGÓCIO</span>
+                <div class="tooltip-message3" id="tooltipMessage3" style="display:none;">
+                  Anote os custos que permanecem os mesmos, não importa quantas vendas você faça. Isso inclui aluguel, salários, e outros gastos regulares. Estas são suas despesas fixas (DF).
+                </div>
+                <span class="value-display" id="despesaFixaDisplay">R$ </span>
+                <input type="number" id="despesaFixaInput" placeholder="DF" />
                 <i class="icon-info3" onclick="toggleTooltip3()"><img src="icon/info.svg" alt="Saiba mais" width="24"
                     height="24" style="fill:none;" /></i>
-              <div class="tooltip-message3" id="tooltipMessage3" style="display:none;">
-                Despesa fixas são aqueles gastos necessários para deixar o negócio funcionando e não variam em função
-                quantidade de vendas, são eles: aluguel, pró-labore, funcionários, contador, etc.
+                
               </div>
-              </p>
-              <p>
-                <span style="font-weight: 700;">Qual a receita mensal do seu negócio?</span>
-                <br>
-                <span id="receitaMensalDisplay"><strong>RM:</strong> R$ </span>
-                <input type="number" id="receitaMensalInput" placeholder="Digite a receita" />
-              </p>
-              <p>
-                <span style="font-weight: 700;">Agora defina quanto gostaria de ganhar pela venda do produto, mercadoria
-                  ou serviço. Essa será sua margem de lucro (ML).</span>
-                <br>
-                <span id="porcentagemLucroDisplay"><strong>ML:</strong> % </span>
-                <input type="number" id="porcentagemLucroInput" placeholder="Digite a porcentagem" />
-              </p>
+              <div class="input-container">
+                <span class="label">RECEITA MENSAL DO SEU NEGÓCIO</span>
+                <div class="tooltip-message4" id="tooltipMessage4" style="display:none;">
+                  Qual o total de dinheiro que realmente entra no seu negócio todo mês? Este valor é a sua receita mensal (RM), que representa o dinheiro efetivamente recebido, não apenas as vendas realizadas.
+                </div>
+                <span class="value-display" id="receitaMensalDisplay">R$ </span>
+                <input type="number" id="receitaMensalInput" placeholder="RM" />
+                <i class="icon-info4" onclick="toggleTooltip4()"><img src="icon/info.svg" alt="Saiba mais" width="24"
+                  height="24" style="fill:none;" /></i>
+              </div>
+              <div class="input-container">
+                <span class="label">MARGEM DE LUCRO DESEJADA</span>
+                <div class="tooltip-message5" id="tooltipMessage5" style="display:none;">
+                  Defina o lucro que você almeja obter por venda. Isso determinará a sua margem de lucro (ML), que é o percentual de ganho desejado sobre cada produto ou serviço vendido.
+                </div>
+                <span class="value-display" id="porcentagemLucroDisplay">% </span>
+                <input type="number" id="porcentagemLucroInput" placeholder="ML" />
+                <i class="icon-info3" onclick="toggleTooltip5()"><img src="icon/info.svg" alt="Saiba mais" width="24"
+                  height="24" style="fill:none;" /></i>
+              </div>
             </div>
           </div>
           <div class="u-container-align-left-xs u-container-style u-tab-pane" id="tab-cenario" role="tabpanel"
@@ -151,19 +153,121 @@
                   <strong>RM:</strong> R$ <span id="cenarioReceitaMensal"></span>
                   <strong>ML:</strong> <span id="cenarioPorcentagemLucro"></span>%
                 </p>
-                <p><strong>Preço de Venda: </strong><span id="precoVenda"></span></p>
-                <p><strong>Ponto de Equilibrio: </strong> R$ <span id="pontoEquilibrio"></span> Unidade: <span
-                    id="unidade"></span></p>
+                <p><strong>Preço de Venda Ideal: </strong><span id="precoVenda"></span></p>
+                <p><strong>Ponto de Equilibrio: </strong> R$ <span id="pontoEquilibrioReal"></span> Unidade: <span
+                    id="pontoEquilibrioUnidade"></span></p>
               </div>
               <!-- Parte inferior esquerda -->
               <div class="parte-inferior-esquerda">
-                <!-- Conteúdo da parte inferior esquerda -->
-                <h2>teste esquerda</h2>
+                <table>
+                  <!-- Cabeçalho da tabela -->
+                  <thead>
+                    <tr>
+                      <th>Coluna 1</th>
+                      <th>Coluna 2</th>
+                      <th>Coluna 3</th>
+                      <th>Gráfico</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da tabela -->
+                  <tbody>
+                    <!-- Linhas normais -->
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+                      <td rowspan="11">Espaço para o gráfico</td> <!-- Ajuste o rowspan conforme necessário -->
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+
+                    <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
+                    <tr>
+                      <td colspan="3">Resultado 1</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">Resultado 2</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <!-- Parte inferior direita -->
               <div class="parte-inferior-direita">
-                <!-- Conteúdo da parte inferior direita -->
-                <h2>teste direita</h2>
+                <table>
+                  <!-- Cabeçalho da tabela -->
+                  <thead>
+                    <tr>
+                      <th>Coluna 1</th>
+                      <th>Coluna 2</th>
+                      <th>Coluna 3</th>
+                      <th>Gráfico</th>
+                    </tr>
+                  </thead>
+                  <!-- Corpo da tabela -->
+                  <tbody>
+                    <!-- Linhas normais -->
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+                      <td rowspan="11">Espaço para o gráfico</td> <!-- Ajuste o rowspan conforme necessário -->
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+                    <tr>
+                      <td>Dado 1</td>
+                      <td>Dado 2</td>
+                      <td>Dado 3</td>
+
+                    </tr>
+
+                    <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
+                    <tr>
+                      <td colspan="3">Resultado 1</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">Resultado 2</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -175,23 +279,14 @@
 
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-625c">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-small-text u-text u-text-variant u-text-1">Texto de Amostra. Clique para selecionar o Elemento de
-        Texto.</p>
+      <p class="u-small-text u-text u-text-variant u-text-1">Em desenvolvimento. by Ronaldo Medeiros</p>
     </div>
   </footer>
   <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-      <span>Website Templates</span>
-    </a>
-    <p class="u-text">
-      <span>created with</span>
-    </p>
-    <a class="u-link" href="" target="_blank">
-      <span>Website Builder Software</span>
-    </a>.
-  </section>  
+  </section>
   <script src="formulas.js"></script>
 </body>
+
 
 </html>
 

@@ -605,3 +605,118 @@ body .u-tabs .u-tab-item a.active {
   background-color: #C9318B !important;
 }
 
+.u-logo-container {
+  display: flex; /* Usa flexbox para alinhamento */
+  align-items: center; /* Centraliza verticalmente o conteúdo */
+  background-image: url('images/default-logo.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover; /* ou 'contain' se quiser ver toda a imagem */
+  opacity: 0.1; /* Ajuste para a transparência desejada do fundo */
+}
+
+.u-logo-container .u-logo-image {
+  width: 40px; /* Define a largura da imagem do logo */
+  height: 40px; /* Define a altura da imagem do logo */
+  margin-right: 10px; /* Adiciona um espaço entre o logo e o texto */
+}
+
+.u-logo-container .u-logo-text {
+  font-size: 1.5em; /* Ajuste o tamanho da fonte conforme necessário */
+  color: #000; /* Ajuste a cor do texto conforme necessário */
+}
+body {
+  background-image: url('images/fundobranco.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  background-attachment: fixed;
+  background-color: #fde1fc !important;
+}
+
+input[type="number"] {
+  width: 15% ; 
+  padding: 10px ; 
+  margin: 5px 0 ; 
+
+  border: 2px solid #ca71ee;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
+  font-size: 1em; 
+  color: #333; 
+}
+
+
+input[type="number"]:focus {
+  border-color: #ca71ee; 
+  box-shadow: 0 0 8px rgba(136, 170, 221, 0.6); 
+  outline: none; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8px 0; /* Ajuste conforme necessário */
+}
+
+.input-container .label {
+  flex-grow: 1;
+}
+
+.input-container .label::after {
+  content: '';
+  display: block;
+  margin-left: 8px;
+  flex-grow: 1;
+  border-bottom: 1px dotted #000; /* Cria a linha de pontos */
+}
+
+.input-container input, 
+.input-container .value-display, 
+.input-container .icon-info {
+  position: relative;
+  z-index: 1; /* Garante que o input, cifrão e ícone fiquem acima dos pontos */
+}
+
+/* Ajusta o espaçamento e a ordem dos elementos */
+.input-container input {
+  order: 2;
+  margin-right: 8px; /* Espaçamento entre o input e o cifrão/porcentagem */
+}
+
+
+.icon-info,
+.icon-info2,
+.icon-info3,
+.icon-info4,
+.icon-info5 {
+  order: 4;
+}
+.icon-info {
+  margin-left: -5px; /* Diminui o espaço entre o ícone e o input */
+}
+
+.tooltip-message,
+.tooltip-message2,
+.tooltip-message3,
+.tooltip-message4,
+.tooltip-message5 {
+  background: #ffffff;
+}
