@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <title>Página Inicial</title>
   <link rel="stylesheet" href="homepage.css" media="screen">
-  <link rel="stylesheet" href="Página-Inicial.css" media="screen">
+  <link rel="stylesheet" href="estilos.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="calc.js" defer=""></script>
   <link id="u-theme-google-font" rel="stylesheet"
@@ -19,6 +19,11 @@
 		"name": "",
 		"logo": "images/default-logo.png"
 }</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChartFixo);
+  </script>
   <meta name="theme-color" content="#478ac9">
   <meta property="og:title" content="Página Inicial">
   <meta property="og:type" content="website">
@@ -157,118 +162,149 @@
                 <p><strong>Ponto de Equilibrio: </strong> R$ <span id="pontoEquilibrioReal"></span> Unidade: <span
                     id="pontoEquilibrioUnidade"></span></p>
               </div>
-              <!-- Parte inferior esquerda -->
-              <div class="parte-inferior-esquerda">
-                <table>
-                  <!-- Cabeçalho da tabela -->
-                  <thead>
-                    <tr>
-                      <th>Coluna 1</th>
-                      <th>Coluna 2</th>
-                      <th>Coluna 3</th>
-                      <th>Gráfico</th>
-                    </tr>
-                  </thead>
-                  <!-- Corpo da tabela -->
-                  <tbody>
-                    <!-- Linhas normais -->
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-                      <td rowspan="11">Espaço para o gráfico</td> <!-- Ajuste o rowspan conforme necessário -->
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-
-                    <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
-                    <tr>
-                      <td colspan="3">Resultado 1</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">Resultado 2</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- Parte inferior direita -->
-              <div class="parte-inferior-direita">
-                <table>
-                  <!-- Cabeçalho da tabela -->
-                  <thead>
-                    <tr>
-                      <th>Coluna 1</th>
-                      <th>Coluna 2</th>
-                      <th>Coluna 3</th>
-                      <th>Gráfico</th>
-                    </tr>
-                  </thead>
-                  <!-- Corpo da tabela -->
-                  <tbody>
-                    <!-- Linhas normais -->
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-                      <td rowspan="11">Espaço para o gráfico</td> <!-- Ajuste o rowspan conforme necessário -->
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-                    <tr>
-                      <td>Dado 1</td>
-                      <td>Dado 2</td>
-                      <td>Dado 3</td>
-
-                    </tr>
-
-                    <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
-                    <tr>
-                      <td colspan="3">Resultado 1</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3">Resultado 2</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                <div class="tabelas">                  
+                  <div class="tabela-cenarios">
+                    <table>
+                      <!-- Cabeçalho da tabela -->
+                      <thead>
+                        <tr>
+                          <th>Coluna 1</th>
+                          <th>Coluna 2</th>
+                          <th>Coluna 3</th>
+                        </tr>
+                      </thead>
+                      <!-- Corpo da tabela -->
+                      <tbody>
+                        <!-- Linhas normais -->
+                        <tr>
+                          <td class="indice-tabela">Preço de Venda</td>
+                          <td><span id="precoVenda1"></span></td>
+                          <td>100%</td>
+                          
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Custos de Aquisição</td>
+                          <td><span id="cenarioCustoAquisicao1"></span></td>
+                          <td><span id="custoAquisicaoFixo"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Custos Variáveis</td>
+                          <td><span id="custoVariavelFixo"></span></td>
+                          <td><span id="custoVariavelFixoPorcentagem"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Margem de Contribuição</td>
+                          <td><span id="margemContribuicaoFixa"></span></td>
+                          <td><span id="margemContribuicaoFixaPorcentagem"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">% de Despesas Fixas</td>
+                          <td><span id="porcentagemDespesaFixaFixo"></td>
+                          <td><span id="porcentagemDespesaFixaFixoPorcento"></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Margem de Lucro</td>
+                          <td><span id="margemLucroFixo"></td>
+                          <td><span id="margemLucroFixoPorcentagem"></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Mark-up Multiplicador</td>
+                          <td colspan="2"><span id="markup"></td>
+                        </tr>
+    
+                        <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
+                        <tr>
+                          <td colspan="3">Resultado 1</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">Resultado 2</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="graficoFixo" >
+                    <p class="titulo">Distribuição %</p>
+                    <div id="graficoMargemLucro" class="grafico">
+                      <!-- O gráfico do Google será renderizado aqui -->
+                    </div>
+                    <ul class="legenda">
+                      <li><span class="color-box green"></span> Item Verde</li>
+                      <li><span class="color-box blue"></span> Item Azul</li>
+                      <li><span class="color-box red"></span> Item Vermelho</li>
+                      <li><span class="color-box orange"></span> Item Laranja</li>
+                      <!-- Adicione mais itens de legenda conforme necessário -->
+                    </ul>
+                  </div>
+                  <div class="tabela-cenarios">
+                    <table>
+                      <!-- Cabeçalho da tabela -->
+                      <thead>
+                        <tr>
+                          <th>Coluna 1</th>
+                          <th>Coluna 2</th>
+                          <th>Coluna 3</th>
+                        </tr>
+                      </thead>
+                      <!-- Corpo da tabela -->
+                      <tbody>
+                        <!-- Linhas normais -->
+                        <tr>
+                          <td class="indice-tabela">Preço de Venda</td>
+                          <td><span id="precoVenda1"></span></td>
+                          <td>100%</td>
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Custos de Aquisição</td>
+                          <td><span id="cenarioCustoAquisicao1"></span></td>
+                          <td><span id="custoAquisicaoFixo"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Custos Variáveis</td>
+                          <td><span id="custoVariavelFixo"></span></td>
+                          <td><span id="custoVariavelFixoPorcentagem"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Margem de Contribuição</td>
+                          <td><span id="margemContribuicaoFixa"></span></td>
+                          <td><span id="margemContribuicaoFixaPorcentagem"></span></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">% de Despesas Fixas</td>
+                          <td><span id="porcentagemDespesaFixaFixo"></td>
+                          <td><span id="porcentagemDespesaFixaFixoPorcento"></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Margem de Lucro</td>
+                          <td><span id="margemLucroFixo"></td>
+                          <td><span id="margemLucroFixoPorcentagem"></td>
+    
+                        </tr>
+                        <tr>
+                          <td class="indice-tabela">Mark-up Multiplicador</td>
+                          <td colspan="2"><span id="markup"></td>
+                        </tr>
+    
+                        <!-- Últimas duas linhas para resultados, sem as 3 primeiras colunas -->
+                        <tr>
+                          <td colspan="3">Resultado 1</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3">Resultado 2</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div id="graficoDireito" class="grafico"></div>
+                </div>
             </div>
           </div>
 

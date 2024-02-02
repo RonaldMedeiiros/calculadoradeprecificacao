@@ -654,20 +654,32 @@ input[type="number"]:focus {
   outline: none; 
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+.tabelas {
+  display: flex; /* Usa Flexbox para o layout */
+  align-items: flex-start; /* Alinha os itens ao topo */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  gap: 20px; /* Espaçamento entre os itens */
 }
 
-th, td {
+.tabela-cenarios {
+  /* Estilização das tabelas */
   border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-th {
-  background-color: #f2f2f2;
+.grafico {
+  /* Estilização dos gráficos */
+  width: 200px; /* ou a largura que desejar para os gráficos */
+  height: 200px; /* ou a altura que desejar para os gráficos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
+  margin-right: 50px;
 }
+
+/* Estilização adicional conforme a imagem enviada, como cores de fundo, fontes, etc. */
+
 
 .input-container {
   display: flex;
@@ -720,3 +732,35 @@ th {
 .tooltip-message5 {
   background: #ffffff;
 }
+.indice-tabela {
+  font-size: 12px;
+  background-color: #9c9c9c;
+}
+
+.legenda {
+  display: flex;
+  align-items: left; /* Centraliza os itens horizontalmente */
+  list-style: none; /* Remove estilos padrão de lista */
+  padding: 0; /* Remove padding padrão */
+  margin: 20px 0; /* Adiciona espaço antes e depois da legenda */
+  margin-top: -40px;
+}
+.titulo {
+  text-align: center;
+  margin-top: -20;
+}
+.legenda li {
+  margin: 5px 0;
+  font-size: 9px;
+}
+.legenda .color-box {
+  width: 10px;
+  height: 10px;
+  margin-right: 1px;
+  display: inline-block;
+}
+/* Substitua abaixo com as cores correspondentes ao seu gráfico */
+.green { background-color: #8BC34A;}
+.blue { background-color: #2196F3;}
+.red { background-color: #F44336;}
+.orange { background-color: #FFC107;}

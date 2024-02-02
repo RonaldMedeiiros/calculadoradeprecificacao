@@ -62,8 +62,11 @@ function toggleTooltip() {
   document.getElementById('custoAquisicaoInput').addEventListener('input', function () {
     custoDeAquisicao = parseFloat(this.value) || 0;
     document.getElementById('cenarioCustoAquisicao').textContent = custoDeAquisicao.toFixed(2);
+    document.getElementById('cenarioCustoAquisicao1').textContent = `R$ ${custoDeAquisicao.toFixed(2)}`;
     calcularPrecoVenda();
     calculaPontoEquilibrio();
+    graficoFixo();
+    drawChartFixo();
   });
 
   document.getElementById('percentualCustoInput').addEventListener('input', function () {
@@ -71,6 +74,8 @@ function toggleTooltip() {
     document.getElementById('cenarioPercentualCusto').textContent = percentualCusto.toFixed(2);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
+    graficoFixo();
+    drawChartFixo();
   });
 
   document.getElementById('despesaFixaInput').addEventListener('input', function () {
@@ -78,6 +83,8 @@ function toggleTooltip() {
     document.getElementById('cenarioDespesaFixa').textContent = despesaFixa.toFixed(2);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
+    graficoFixo();
+    drawChartFixo();
   });
 
   document.getElementById('receitaMensalInput').addEventListener('input', function () {
@@ -85,6 +92,8 @@ function toggleTooltip() {
     document.getElementById('cenarioReceitaMensal').textContent = receitaMensal.toFixed(2);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
+    graficoFixo();
+    drawChartFixo();
   });
 
   document.getElementById('porcentagemLucroInput').addEventListener('input', function () {
@@ -92,6 +101,8 @@ function toggleTooltip() {
     document.getElementById('cenarioPorcentagemLucro').textContent = porcentagemLucro.toFixed(2);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
+    graficoFixo();
+    drawChartFixo();
   });
 
   // Função para calcular e exibir o preço de venda
@@ -116,56 +127,100 @@ function toggleTooltip() {
     // Cálculo do preço de venda
     var precoVenda = (custoDeAquisicao / (1 - (CV + DF + ML)));
     document.getElementById('precoVenda').textContent = `R$ ${precoVenda.toFixed(2)}`;
+    document.getElementById('precoVenda1').textContent = `R$ ${precoVenda.toFixed(2)}`;
     return {
       precoVenda: precoVenda,
-      CV: CV
+      CV: CV,
+      DF: DF, 
+      ML: ML
     };
   }
 
   function calculaPontoEquilibrio() {
     var resultado = calcularPrecoVenda();
-    if (!resultado) return; 
-  
-    var custoVariavelUnidade = resultado.CV * resultado.precoVenda; 
-    var margemContribuicao = resultado.precoVenda - custoDeAquisicao - custoVariavelUnidade;
-    var porcentagemMargemContribruicao = margemContribuicao/resultado.precoVenda;
-    var pontoEquilibrioReal = despesaFixa / porcentagemMargemContribruicao;
-    var pontoEquilibrioUnidade = pontoEquilibrioReal / resultado.precoVenda; 
-  
+      if (!resultado) return;
+
+      var custoVariavelUnidade = resultado.CV * resultado.precoVenda;
+      var margemContribuicao = resultado.precoVenda - custoDeAquisicao - custoVariavelUnidade;
+      var porcentagemMargemContribruicao = margemContribuicao / resultado.precoVenda;
+      var pontoEquilibrioReal = despesaFixa / porcentagemMargemContribruicao;
+      var pontoEquilibrioUnidade = pontoEquilibrioReal / resultado.precoVenda;
+
+      // Função para arredondar o ponto de equilíbrio em unidades
+      function arredondarPontoEquilibrio(peUnidade) {
+        var parteInteira = Math.floor(peUnidade);
+        var parteDecimal = peUnidade - parteInteira;
+
+        if (parteDecimal > 0.01) {
+          return Math.ceil(peUnidade); // Arredonda para o próximo número inteiro.
+        } else {
+          return parteInteira; // Mantém o inteiro atual, pois a parte decimal não excede 0,20.
+        }
+      }
+
+  // Aplicando a função de arredondamento ao pontoEquilibrioUnidade
+  pontoEquilibrioUnidade = arredondarPontoEquilibrio(pontoEquilibrioUnidade);
     document.getElementById('pontoEquilibrioReal').textContent = `${pontoEquilibrioReal.toFixed(2)}`;
-    document.getElementById('pontoEquilibrioUnidade').textContent = `${pontoEquilibrioUnidade.toFixed(2)}`;
-    return {
-      margemContribuicao: margemContribuicao,
-      pontoEquilibrioReal: pontoEquilibrioReal,
-      pontoEquilibrioUnidade: pontoEquilibrioUnidade,
-      custoVariavelUnidade: custoVariavelUnidade,
-      porcentagemMargemContribruicao: porcentagemMargemContribruicao
-    };
+    document.getElementById('pontoEquilibrioUnidade').textContent = `${pontoEquilibrioUnidade.toFixed(0)}`;
+  
   }
-  document.getElementById('logValoresBtn').addEventListener('click', function() {
-    console.log("Custo de Aquisição: ", custoDeAquisicao);
-    console.log("Percentual de Custo: ", percentualCusto);
-    console.log("Despesa Fixa: ", despesaFixa);
-    console.log("Receita Mensal: ", receitaMensal);
-    console.log("Porcentagem de Lucro: ", porcentagemLucro);
-  
-    // Logar os valores calculados pela função calcularPrecoVenda
+
+  function graficoFixo(){
+
     var resultado = calcularPrecoVenda();
-    var resultadoPE = calculaPontoEquilibrio();
-    if (resultado) {
-      console.log("Preço de Venda: R$ " + resultado.precoVenda.toFixed(2));
-      console.log("CV (Custo Variável como percentual): ", resultado.CV);
-  
-      // Supondo que você queria também logar os resultados do cálculo do ponto de equilíbrio
-      console.log("Custo Variável por Unidade: ", resultadoPE.custoVariavelUnidade);
-      console.log("Custo da margem de contribuição: ", resultadoPE.margemContribuicao);
-      console.log("Percentual da margem de contruibuicao: ", resultadoPE.porcentagemMargemContribruicao);
-      console.log("Custo do ponto do ponto de equilibrio real: ", resultadoPE.pontoEquilibrioReal);
-      console.log("Custo do ponto do ponto de equilibrio unidade: ", resultadoPE.pontoEquilibrioUnidade);
-      // Estes valores dependem dos cálculos feitos na função calculaPontoEquilibrio, então, 
-      // caso esses cálculos sejam feitos fora da função, seria necessário adaptar.
-    } else {
-      console.log("Não foi possível calcular o preço de venda ou os valores estão incompletos.");
+    var custoVariavelFixo = resultado.CV * resultado.precoVenda;
+    var custoAquisicaoFixo = (custoDeAquisicao / resultado.precoVenda) * 100;
+    var custoVariavelFixoPorcentagem = (custoVariavelFixo / resultado.precoVenda) * 100;
+    var margemContribuicaoFixa = resultado.precoVenda - custoDeAquisicao - custoVariavelFixo;
+    var margemContribuicaoFixaPorcentagem = (margemContribuicaoFixa / resultado.precoVenda) * 100;
+    var porcentagemDespesaFixaFixo = resultado.DF * resultado.precoVenda;
+    var porcentagemDespesaFixaFixoPorcento = (porcentagemDespesaFixaFixo / resultado.precoVenda) * 100;
+    var margemLucroFixo = margemContribuicaoFixa - porcentagemDespesaFixaFixo;
+    var margemLucroFixoPorcentagem = (margemLucroFixo / resultado.precoVenda) * 100;
+    var markup = 1 / (1 - (resultado.CV + resultado.DF + resultado.ML));
+
+
+    document.getElementById('custoVariavelFixo').textContent = `R$ ${custoVariavelFixo.toFixed(2)}`;
+    document.getElementById('custoAquisicaoFixo').textContent = `${custoAquisicaoFixo.toFixed(2)}%`;
+    document.getElementById('custoVariavelFixoPorcentagem').textContent = `${custoVariavelFixoPorcentagem.toFixed(2)}%`;
+    document.getElementById('margemContribuicaoFixa').textContent = `R$ ${margemContribuicaoFixa.toFixed(2)}`;
+    document.getElementById('margemContribuicaoFixaPorcentagem').textContent = `${margemContribuicaoFixaPorcentagem.toFixed(2)}%`;
+    document.getElementById('porcentagemDespesaFixaFixo').textContent = `R$ ${porcentagemDespesaFixaFixo.toFixed(2)}`;    
+    document.getElementById('porcentagemDespesaFixaFixoPorcento').textContent = `${porcentagemDespesaFixaFixoPorcento.toFixed(2)}%`;
+    document.getElementById('margemLucroFixo').textContent = `R$ ${margemLucroFixo.toFixed(2)}`;    
+    document.getElementById('margemLucroFixoPorcentagem').textContent = `${margemLucroFixoPorcentagem.toFixed(2)}%`;
+    document.getElementById('markup').textContent = `${markup.toFixed(2)}`;
+
+    return {
+      margemLucroFixoPorcentagem: margemLucroFixoPorcentagem,
+      custoAquisicaoFixo: custoAquisicaoFixo,
+      custoVariavelFixoPorcentagem: custoVariavelFixoPorcentagem,
+      porcentagemDespesaFixaFixoPorcento: porcentagemDespesaFixaFixoPorcento
     }
-  });
+
+
+  }
+
+  function drawChartFixo() {
+    var resultado = graficoFixo();
+    var data = google.visualization.arrayToDataTable([
+      ['Tipo', 'Valor'],
+      ['Margem de Lucro', resultado.margemLucroFixoPorcentagem],
+      ['Custo Aquisição',      resultado.custoAquisicaoFixo],
+      ['Custo Variável',  resultado.custoVariavelFixoPorcentagem],
+      ['Despesa Fixa', resultado.porcentagemDespesaFixaFixoPorcento]
+    ]);
+
+    var options = {
+      legend:'none',
+      pieHole: 0.4,
+      backgroundColor: 'transparent',
+      width:300,
+      height:250 
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('graficoMargemLucro'));
+    chart.draw(data, options);
+  }
+
   
