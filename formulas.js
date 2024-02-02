@@ -212,11 +212,11 @@ function toggleTooltip() {
     ]);
 
     var options = {
-      legend:'none',
+      legend:'right',
       pieHole: 0.4,
       backgroundColor: 'transparent',
-      width:300,
-      height:250 
+      width:400,
+      height:300 
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('graficoMargemLucro'));
