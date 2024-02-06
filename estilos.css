@@ -552,12 +552,13 @@
 .u-container-layout-4 {
   display: flex; /* Habilita Flexbox */
   flex-direction: column; /* Organiza as children em colunas */
+  width: 100%;
+  max-width: none;
 }
 
 .parte-superior {
-  width: 100%; /* Ocupa toda a largura */
-  text-align: center;
-  /* Estilize conforme necessário */
+  width: 30%;
+  align-items: center; /* Ocupa toda a largura */
 }
 
 .parte-inferior-esquerda{
@@ -571,24 +572,6 @@
 .parte-inferior-esquerda, .parte-inferior-direita {
   width: 50%; /* Cada uma ocupa metade da largura */
   /* Estilize conforme necessário */
-}
-
-/* Para as duas partes inferiores ficarem lado a lado */
-@media (min-width: 600px) { /* Ajuste o valor do min-width conforme necessário */
-  .u-container-layout-4 {
-    flex-direction: row; /* Muda o layout para linha na tela grande */
-    flex-wrap: wrap; /* Permite que os itens sejam envolvidos como necessário */
-  }
-  
-  .parte-inferior-esquerda, .parte-inferior-direita {
-    width: 50%; /* Cada parte inferior ocupa metade da largura */
-    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
-  }
-
-  .parte-superior {
-    width: 100%; /* Ocupa toda a largura na tela grande */
-    order: -1; /* Coloca a parte superior acima das outras */
-  }
 }
 
 body .u-tabs .u-tab-item a {
@@ -654,27 +637,52 @@ input[type="number"]:focus {
   outline: none; 
 }
 
+input[type="outro"] {
+  width: 80px;
+  height: 30px; /* Ajuste o valor conforme necessário */
+  padding: 10px ; 
+  margin: 5px 0 ; 
+  text-align: center;
+
+  border: 2px solid #ca71ee;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
+  font-size: 1em; 
+  color: #333; 
+}
+
 .tabelas {
-  display: flex; /* Usa Flexbox para o layout */
-  align-items: flex-start; /* Alinha os itens ao topo */
-  justify-content: center; /* Centraliza os itens horizontalmente */
-  gap: 20px; /* Espaçamento entre os itens */
+  display: flex;
+  justify-content: center !important; /* Centraliza horizontalmente */
+  align-items: flex-start !important; /* Centraliza verticalmente (opcional) */
+  flex-wrap: wrap !important; /* Permite que os itens se movam para a próxima linha se não houver espaço suficiente */
+  gap: 20px; /* Espaçamento entre os itens flexíveis */
 }
 
 .tabela-interna td {
   border: 1px solid #b8b8b8;
+  width: 120px;
 }
 
 .tabela-cenarios {
-  /* Estilização das tabelas */
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto;                  /* Permite que as tabelas cresçam e ocupem espaço disponível */
+  width: calc(50% - 20px); /* Define uma largura máxima para cada tabela, considerando o gap */
 }
+
+.grafico1, .grafico2 {
+  /* Estilize seus gráficos aqui, se necessário */
+  width: 150%; /* Faz com que o gráfico ocupe toda a largura do seu container .tabela-cenarios */
+  height: auto; /* Altura automática, ajuste conforme necessário */
+  
+}
+
+
 
 .grafico {
   /* Estilização dos gráficos */
-  width: 200px; /* ou a largura que desejar para os gráficos */
-  height: 200px; /* ou a altura que desejar para os gráficos */
+  width: 800px; /* ou a largura que desejar para os gráficos */
+  height: 800px; /* ou a altura que desejar para os gráficos */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -682,8 +690,6 @@ input[type="number"]:focus {
   margin-right: 50px;
   margin-left: 30px;
 }
-
-/* Estilização adicional conforme a imagem enviada, como cores de fundo, fontes, etc. */
 
 
 .input-container {
@@ -753,6 +759,9 @@ input[type="number"]:focus {
 .titulo {
   margin-top: -20;
 }
+.titulo2 {
+  text-align: left;
+}
 .legenda li {
   margin: 5px 0;
   font-size: 9px;
@@ -768,3 +777,32 @@ input[type="number"]:focus {
 .blue { background-color: #2196F3;}
 .red { background-color: #F44336;}
 .orange { background-color: #FFC107;}
+
+.campo-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8px 0;
+}
+
+.campo-container .label {
+  flex-grow: 1;
+  white-space: nowrap; /* Previne que o rótulo quebre a linha */
+}
+
+.campo-container .label::after {
+  content: '';
+  display: block;
+  flex-grow: 1;
+  border-bottom: 1px dotted #000; /* Cria a linha de pontos */
+  margin: 0 8px; /* Espaço entre o rótulo e os pontos */
+}
+
+.campo-container strong {
+  margin-right: 8px; /* Espaço entre os pontos e o valor */
+}
+
+.campo-estilizado {
+  /* seus estilos existentes para campo-estilizado */
+  flex-shrink: 0; /* Previne que o campo encolha */
+}
