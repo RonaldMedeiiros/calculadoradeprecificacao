@@ -22,7 +22,6 @@ html {
 }
 
 .parte-superior {
-  display: flex;
   justify-content: space-around;
   width: 30%;
   align-items: center; /* Ocupa toda a largura */
