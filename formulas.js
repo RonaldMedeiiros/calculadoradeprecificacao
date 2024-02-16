@@ -1,13 +1,20 @@
+// Função para alternar a exibição das dicas de ferramenta.
 function toggleTooltip() {
-    var tooltip = document.getElementById("tooltipMessage");
-    if (tooltip.style.display === "none") {
-      tooltip.style.display = "block";
-      tooltip.style.opacity = 1;
-    } else {
-      tooltip.style.opacity = 0;
-      setTimeout(function () { tooltip.style.display = "none"; }, 300); // Espera a transição terminar
-    }
+  // Acessa o elemento da dica de ferramenta pelo seu ID.
+  var tooltip = document.getElementById("tooltipMessage");
+  // Verifica se a dica de ferramenta está atualmente oculta.
+  if (tooltip.style.display === "none") {
+    // Se estiver oculta, a torna visível e totalmente opaca.
+    tooltip.style.display = "block";
+    tooltip.style.opacity = 1;
+  } else {
+    // Se estiver visível, inicia a transição para torná-la transparente.
+    tooltip.style.opacity = 0;
+    // Após a transição (300ms), oculta a dica de ferramenta.
+    setTimeout(function () { tooltip.style.display = "none"; }, 300);
   }
+}
+// As funções toggleTooltip2() a toggleTooltip5() seguem a mesma lógica para diferentes dicas de ferramenta.
   function toggleTooltip2() {
     var tooltip2 = document.getElementById("tooltipMessage2");
     if (tooltip2.style.display === "none") {
@@ -51,7 +58,13 @@ function toggleTooltip() {
     }
   }
 
-  // Variáveis globais
+  // Função para formatar números como valores monetários em real brasileiro.
+  function formatarValorMonetario(valor) {
+    // Utiliza a API Intl.NumberFormat para a formatação.
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+}
+
+  // Declaração de variáveis globais para armazenar valores financeiros inseridos pelo usuário.
   var custoDeAquisicao = 0;
   var percentualCusto = 0;
   var despesaFixa = 0;
@@ -59,11 +72,13 @@ function toggleTooltip() {
   var porcentagemLucro = 0;
   var unidadeVariavel = 0;
 
-  // Eventos input
+  // Eventos input para atualizar os valores com base na entrada do usuário.
   document.getElementById('custoAquisicaoInput').addEventListener('input', function () {
     custoDeAquisicao = parseFloat(this.value) || 0;
-    document.getElementById('cenarioCustoAquisicao').textContent = custoDeAquisicao.toFixed(2);
-    document.getElementById('cenarioCustoAquisicao1').textContent = `R$ ${custoDeAquisicao.toFixed(2)}`;
+    // Atualiza a exibição dos valores e recalcula os resultados.
+    document.getElementById('cenarioCustoAquisicao').textContent = formatarValorMonetario(custoDeAquisicao);
+    document.getElementById('cenarioCustoAquisicao1').textContent = formatarValorMonetario(custoDeAquisicao);
+    // Repete o processo para as demais entradas e realiza os cálculos necessários.
     calcularPrecoVenda();
     calculaPontoEquilibrio();
     cenarioFixo();
@@ -72,7 +87,7 @@ function toggleTooltip() {
 
   document.getElementById('percentualCustoInput').addEventListener('input', function () {
     percentualCusto = parseFloat(this.value) || 0;
-    document.getElementById('cenarioPercentualCusto').textContent = percentualCusto.toFixed(2);
+    document.getElementById('cenarioPercentualCusto').textContent = `${percentualCusto.toFixed(2)}`;
     calcularPrecoVenda();
     calculaPontoEquilibrio();
     cenarioFixo();
@@ -81,7 +96,7 @@ function toggleTooltip() {
 
   document.getElementById('despesaFixaInput').addEventListener('input', function () {
     despesaFixa = parseFloat(this.value) || 0;
-    document.getElementById('cenarioDespesaFixa').textContent = despesaFixa.toFixed(2);
+    document.getElementById('cenarioDespesaFixa').textContent = formatarValorMonetario(despesaFixa);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
     cenarioFixo();
@@ -90,7 +105,7 @@ function toggleTooltip() {
 
   document.getElementById('receitaMensalInput').addEventListener('input', function () {
     receitaMensal = parseFloat(this.value) || 0;
-    document.getElementById('cenarioReceitaMensal').textContent = receitaMensal.toFixed(2);
+    document.getElementById('cenarioReceitaMensal').textContent = formatarValorMonetario(receitaMensal);
     calcularPrecoVenda();
     calculaPontoEquilibrio();
     cenarioFixo();
@@ -99,7 +114,7 @@ function toggleTooltip() {
 
   document.getElementById('porcentagemLucroInput').addEventListener('input', function () {
     porcentagemLucro = parseFloat(this.value) || 0;
-    document.getElementById('cenarioPorcentagemLucro').textContent = porcentagemLucro.toFixed(2);
+    document.getElementById('cenarioPorcentagemLucro').textContent = `${porcentagemLucro.toFixed(2)}`;
     calcularPrecoVenda();
     calculaPontoEquilibrio();
     cenarioFixo();
@@ -133,8 +148,8 @@ function toggleTooltip() {
 
     // Cálculo do preço de venda
     var precoVenda = (custoDeAquisicao / (1 - (CV + DF + ML)));
-    document.getElementById('precoVenda').textContent = `R$ ${precoVenda.toFixed(2)}`;
-    document.getElementById('precoVenda1').textContent = `R$ ${precoVenda.toFixed(2)}`;
+    document.getElementById('precoVenda').textContent = formatarValorMonetario(precoVenda);
+    document.getElementById('precoVenda1').textContent = formatarValorMonetario(precoVenda);
     return {
       precoVenda: precoVenda,
       CV: CV,
@@ -142,7 +157,7 @@ function toggleTooltip() {
       ML: ML
     };
   }
-
+  // Funções `calculaPontoEquilibrio`, `cenarioFixo`, `cenarioVariavel`, `graficoFixo` e `graficoVariavel` seguem lógicas específicas para cálculos e visualizações adicionais, baseando-se nos valores de entrada e nos resultados de `calcularPrecoVenda`.
   function calculaPontoEquilibrio() {
     var resultado = calcularPrecoVenda();
       if (!resultado) return;
@@ -167,13 +182,15 @@ function toggleTooltip() {
 
   // Aplicando a função de arredondamento ao pontoEquilibrioUnidade
   pontoEquilibrioUnidade = arredondarPontoEquilibrio(pontoEquilibrioUnidade);
-    document.getElementById('pontoEquilibrioReal').textContent = `${pontoEquilibrioReal.toFixed(2)}`;
+    document.getElementById('pontoEquilibrioReal').textContent = formatarValorMonetario(pontoEquilibrioReal);
     document.getElementById('pontoEquilibrioUnidade').textContent = `${pontoEquilibrioUnidade.toFixed(0)}`;
   
     return {
       pontoEquilibrioUnidade: pontoEquilibrioUnidade
     }
   }
+
+  
 
   function cenarioFixo(){
 
@@ -190,15 +207,17 @@ function toggleTooltip() {
     var markup = 1 / (1 - (resultado.CV + resultado.DF + resultado.ML));
 
 
-    document.getElementById('custoVariavelFixo').textContent = `R$ ${custoVariavelFixo.toFixed(2)}`;
+    document.getElementById('custoVariavelFixo').textContent = formatarValorMonetario(custoVariavelFixo);
     document.getElementById('custoAquisicaoFixo').textContent = `${custoAquisicaoFixo.toFixed(2)}%`;
     document.getElementById('custoVariavelFixoPorcentagem').textContent = `${custoVariavelFixoPorcentagem.toFixed(2)}%`;
-    document.getElementById('margemContribuicaoFixa').textContent = `R$ ${margemContribuicaoFixa.toFixed(2)}`;
+    document.getElementById('margemContribuicaoFixa').textContent = formatarValorMonetario(margemContribuicaoFixa);
     document.getElementById('margemContribuicaoFixaPorcentagem').textContent = `${margemContribuicaoFixaPorcentagem.toFixed(2)}%`;
-    document.getElementById('porcentagemDespesaFixaFixo').textContent = `R$ ${porcentagemDespesaFixaFixo.toFixed(2)}`;    
+    document.getElementById('porcentagemDespesaFixaFixo').textContent = formatarValorMonetario(porcentagemDespesaFixaFixo);    
     document.getElementById('porcentagemDespesaFixaFixoPorcento').textContent = `${porcentagemDespesaFixaFixoPorcento.toFixed(2)}%`;
-    document.getElementById('margemLucroFixo').textContent = `R$ ${margemLucroFixo.toFixed(2)}`;    
+    document.getElementById('margemLucroFixo').textContent = formatarValorMonetario(margemLucroFixo);
+    document.getElementById('margemLucroFixo1').textContent = formatarValorMonetario(margemLucroFixo);  
     document.getElementById('margemLucroFixoPorcentagem').textContent = `${margemLucroFixoPorcentagem.toFixed(2)}%`;
+    document.getElementById('margemLucroFixoPorcentagem1').textContent = `${margemLucroFixoPorcentagem.toFixed(2)}`;
     document.getElementById('markup').textContent = `${markup.toFixed(2)}`;
 
     return {
@@ -235,17 +254,19 @@ function toggleTooltip() {
     var margemLucroVariavelPorcentagem = (margemLucroVariavel / precoVendaVariavel) * 100;
     var markup2 = CF.markup;
 
-    document.getElementById('precoVendaVariavel').textContent = `R$ ${precoVendaVariavel.toFixed(2)}`;
-    document.getElementById('custoAquisicaoVariavel').textContent = `R$ ${custoAquisicaoVariavel.toFixed(2)}`;
+    document.getElementById('precoVendaVariavel').textContent = formatarValorMonetario(precoVendaVariavel);
+    document.getElementById('custoAquisicaoVariavel').textContent = formatarValorMonetario(custoAquisicaoVariavel);
     document.getElementById('custoAquisicaoVariavelPorcentagem').textContent = `${custoAquisicaoVariavelPorcentagem.toFixed(2)}%`;
-    document.getElementById('custoVariavelVariavel').textContent = `R$ ${custoVariavelVariavel.toFixed(2)}`;
+    document.getElementById('custoVariavelVariavel').textContent = formatarValorMonetario(custoVariavelVariavel);
     document.getElementById('porcentagemCustoVariavel').textContent = `${porcentagemCustoVariavel.toFixed(2)}%`;
-    document.getElementById('margemContribuicaoVariavel').textContent = `R$ ${margemContribuicaoVariavel.toFixed(2)}`;
+    document.getElementById('margemContribuicaoVariavel').textContent = formatarValorMonetario(margemContribuicaoVariavel);
     document.getElementById('margemContribuicaoVariavelPorcentagem').textContent = `${margemContribuicaoVariavelPorcentagem.toFixed(2)}%`;
-    document.getElementById('porcentagemDespesaFixaVariavel').textContent = `R$ ${porcentagemDespesaFixaVariavel.toFixed(2)}`;    
+    document.getElementById('porcentagemDespesaFixaVariavel').textContent = formatarValorMonetario(porcentagemDespesaFixaVariavel);    
     document.getElementById('porcentagemDespesaFixaVariavelPorcento').textContent = `${porcentagemDespesaFixaVariavelPorcento.toFixed(2)}%`;
-    document.getElementById('margemLucroVariavel').textContent = `R$ ${margemLucroVariavel.toFixed(2)}`;    
+    document.getElementById('margemLucroVariavel').textContent = formatarValorMonetario(margemLucroVariavel);    
     document.getElementById('margemLucroVariavelPorcentagem').textContent = `${margemLucroVariavelPorcentagem.toFixed(2)}%`;
+    document.getElementById('margemLucroVariavel2').textContent = formatarValorMonetario(margemLucroVariavel);    
+    document.getElementById('margemLucroVariavelPorcentagem2').textContent = `${margemLucroVariavelPorcentagem.toFixed(2)}`;
     document.getElementById('markup2').textContent = `${markup2.toFixed(2)}`;
 
     return {
@@ -265,19 +286,24 @@ function toggleTooltip() {
       ['Custo Variável',  resultado.custoVariavelFixoPorcentagem],
       ['Despesa Fixa', resultado.porcentagemDespesaFixaFixoPorcento]
     ]);
-
+    
     var options = {
       pieHole: 0.4,
       backgroundColor: 'transparent',
-      width:600,
-      height:400,
-      pieSliceText: 'label-and-percentage', // Mostra o nome do segmento      
+      width:400,
+      height:300,
+      pieSliceText: 'label', // Mostra o nome do segmento 
+      pieSliceTextStyle: {
+        color: 'black',
+      },    
       legend: 'none', // Isso remove a legenda
       chartArea: {
-        left: 0, // Isso define o espaço à esquerda do gráfico
+        left: 50, // Isso define o espaço à esquerda do gráfico
         top: 0, // Isso define o espaço no topo do gráfico
-        height: '60%' // Altura da área do gráfico
-      }   
+        height: '90%'
+      },
+      colors: ['#ff3366', '#ff6699', '#ff99cc', '#cc66cc'],
+      fontName: 'OpenSans-Regular'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('graficoMargemLucro'));
@@ -295,11 +321,22 @@ function toggleTooltip() {
     ]);
 
     var options = {
-      legend:'right',
       pieHole: 0.4,
       backgroundColor: 'transparent',
       width:400,
-      height:300 
+      height:300,
+      pieSliceText: 'label', // Mostra o nome do segmento 
+      pieSliceTextStyle: {
+        color: 'black',
+      },    
+      legend: 'none', // Isso remove a legenda
+      chartArea: {
+        left: 50, // Isso define o espaço à esquerda do gráfico
+        top: 0, // Isso define o espaço no topo do gráfico
+        height: '90%'
+      },
+      colors: ['#ff3366', '#ff6699', '#ff99cc', '#cc66cc'],
+      fontName: 'OpenSans-Regular'
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('graficoMargemLucroVariavel'));
